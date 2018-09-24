@@ -1,0 +1,39 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>map</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+</ion-content> -->
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="createPoint(-0.18, -78.48)">
+    <ion-icon name="cloud-upload"></ion-icon>
+  </ion-fab>
+
+  <agm-map [streetViewControl]="false" [streetViewControlOptions]="false" [usePanning]="true" [latitude]="centerPoint.latitude" [longitude]="centerPoint.longitude" [zoom]="14" (mapClick)="mapClicked($event)" [disableDefaultUI]="false"
+    [zoomControl]="true">
+
+    <agm-marker [latitude]="centerPoint.latitude" [longitude]="centerPoint.longitude" [markerDraggable]="true" (dragEnd)="centerPointDragEnd($event)"
+    [iconUrl]="'assets/icon/man.png'" >
+      <agm-info-window>
+        <p>Buscar desde este punto</p>
+      </agm-info-window>
+    </agm-marker>
+
+    <agm-marker *ngFor="let point of points | async" [latitude]="point.position.geopoint.latitude" [longitude]="point.position.geopoint.longitude"
+      [title]="point.id" [iconUrl]="'assets/icon/car.svg'" (markerClick)="mostrarMarker(point, $event)">
+      <agm-info-window>
+        <p>Distancia {{ point.queryMetadata.distance }}</p>
+      </agm-info-window>
+    </agm-marker>
+
+    <agm-circle [strokeOpacity]="0.7" [strokeWeight]="2" [strokePosition]="0" [strokeColor]="'#F6EB04'" [fillOpacity]="0.3" [latitude]="centerPoint.latitude" [longitude]="centerPoint.longitude" [radius]="radius * 1000" [fillColor]="'#E6FCFC'"
+      [circleDraggable]="false" (dragEnd)="updateCenter($event)" [editable]="true" (radiusChange)="updateRadius($event)">
+    </agm-circle>
+
+  </agm-map>
+
+
+</ion-content>

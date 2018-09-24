@@ -20,6 +20,8 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Firebase } from '@ionic-native/firebase/ngx';
 
+import { AgmCoreModule } from '@agm/core';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -32,7 +34,10 @@ import { Firebase } from '@ionic-native/firebase/ngx';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireFunctionsModule,
-    AngularFireMessagingModule
+    AngularFireMessagingModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.apiKey
+    })
   ],
   providers: [
     Firebase,

@@ -18,7 +18,8 @@ const routes: Routes = [
     path: 'tutorial',
     loadChildren: './tutorial/tutorial.module#TutorialPageModule'
   },
-  { path: 'fcm', loadChildren: './fcm/fcm.module#FcmPageModule' }
+  { path: 'fcm', loadChildren: './fcm/fcm.module#FcmPageModule' },
+  { path: 'map', loadChildren: './map/map.module#MapPageModule' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
